@@ -4,6 +4,4 @@ using UnityEngine;
 public abstract class CharacterInput : MonoBehaviour
 {
     [SerializeField] protected CharacterMover Mover;
-
-    public abstract event Action<float> Moved;
 }

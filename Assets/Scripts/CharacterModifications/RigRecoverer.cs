@@ -5,13 +5,16 @@ using UnityEngine.Animations.Rigging;
 
 public class RigRecoverer : MonoBehaviour
 {
-    [SerializeField] private float _recoveryRigWeightSpeed;
+    [SerializeField] private Rig _rig;
+    [Range(0,1)] [SerializeField] private float _recoveryRigWeightSpeed = 0.5f;
     private Coroutine _currentCoroutine;
 
-    public void Recover(Rig rig)
+    public Rig Rig => _rig;
+
+    public void Recover()
     {
         StopCurrentCoroutine(_currentCoroutine);
-        _currentCoroutine = StartCoroutine(TakeNormalRigPosition(rig));
+        _currentCoroutine = StartCoroutine(TakeNormalRigPosition(_rig));
     }
 
     public void Stop()

@@ -18,12 +18,28 @@ public class DelayedMeshSwapper : MonoBehaviour
         _currentCoroutine = StartCoroutine(SwapMeshRoutine(_defaultMesh, swapMesh, delay));
     }
 
-    private IEnumerator SwapMeshRoutine(CharacterMesh defaultMesh, CharacterMesh swapMesh, float delay)
+    public void Stop()
     {
-        defaultMesh.gameObject.SetActive(false);
+        StopCurrentCoroutine(_currentCoroutine);
+        ResetMeshes(_allMeshes, _defaultMesh);
+    }
+
+    private void ResetMeshes(List<CharacterMesh> allMeshes, CharacterMesh defaultMesh)
+    {
+        _defaultMesh.gameObject.SetActive(true);
+
+        foreach (var mesh in allMeshes)
+        {
+            mesh.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator SwapMeshRoutine(CharacterMesh mesh, CharacterMesh swapMesh, float delay)
+    {
+        mesh.gameObject.SetActive(false);
         swapMesh.gameObject.SetActive(true);
         yield return new WaitForSeconds(delay);
-        defaultMesh.gameObject.SetActive(true);
+        mesh.gameObject.SetActive(true);
         swapMesh.gameObject.SetActive(false);
     }
 

@@ -12,6 +12,8 @@ public class CharacterMover : MonoBehaviour
     private float _currentSpeed;
     private Coroutine _currentCoroutine;
 
+    public event Action<float> Moved;
+
     private void Start()
     {
         _currentSpeed = _startSpeed;
@@ -19,6 +21,8 @@ public class CharacterMover : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
+        Moved?.Invoke(direction.normalized.magnitude);
+
         Vector3 directionAlongSurface = _projectOnSurface.Project(direction.normalized);
         Vector3 offset = directionAlongSurface * (_currentSpeed * Time.deltaTime);
         _rigidbody.MovePosition(_rigidbody.position + offset);

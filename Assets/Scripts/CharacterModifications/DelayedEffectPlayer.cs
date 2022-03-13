@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class DelayedEffectPlayer : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _effect;
     private Coroutine _currentCoroutine;
 
-    public void Play(float delay, ParticleSystem effect)
+    public void Play(float delay)
     {
         StopCurrentCoroutine(_currentCoroutine);
-        effect.Stop();
-        _currentCoroutine = StartCoroutine(PlayEffect(delay, effect));
+        _effect.Stop();
+        _currentCoroutine = StartCoroutine(PlayEffect(delay, _effect));
     }
 
     private IEnumerator PlayEffect(float delay, ParticleSystem effect)
