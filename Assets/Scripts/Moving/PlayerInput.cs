@@ -7,6 +7,10 @@ public class PlayerInput : CharacterInput
 {
     [SerializeField] private Vector3 _direction = new Vector3(0, 0, -1);
 
+    public override void Begin()
+    {
+    }
+
     private void Update()
     {       
         if (Input.GetMouseButton(0))

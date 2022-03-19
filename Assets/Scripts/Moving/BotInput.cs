@@ -8,7 +8,7 @@ public class BotInput : CharacterInput
     [SerializeField] private Vector3 _direction = new Vector3(0, 0, -1);
     private Vector3 _currentDirection;
 
-    private void Start()
+    public override void Begin()
     {
         StartCoroutine(MovingRoutine());
     }
@@ -22,8 +22,8 @@ public class BotInput : CharacterInput
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(1, 2));
-            _currentDirection = _direction * UnityEngine.Random.Range(0, 2);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(2, 4));
+            _currentDirection = _direction * UnityEngine.Random.Range(0, 4);
         }
-    }
+    }    
 }

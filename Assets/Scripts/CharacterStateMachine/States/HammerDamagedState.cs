@@ -6,12 +6,14 @@ using UnityEngine;
 class HammerDamagedState : BaseState
 {
     [SerializeField] private CharacterMover _mover;
+    [SerializeField] private DelayedEffectPlayer _paperEffectPlayer;
     [SerializeField] private DelayedAnimationPlayer _damagedAnimationPlayer;
     [SerializeField] private RigRecoverer _rigRecoverer;
     [SerializeField] private float _delay;
 
     public override void Begin()
     {
+        _paperEffectPlayer.Play(_delay);
         TakeDamagedRigPosittion(_rigRecoverer.Rig);
         _rigRecoverer.Recover();
         _damagedAnimationPlayer.Play(_delay, AnimatorPaperCharacter.Params.Damaged);

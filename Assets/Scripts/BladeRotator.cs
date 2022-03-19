@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BladeRotator : MonoBehaviour
 {
+    [SerializeField] private Vector3 _rotationVector;
     [SerializeField] private float _rotationSpeed;
 
     private void Update()
     {
-        Quaternion rotationY = Quaternion.AngleAxis(_rotationSpeed, Vector3.up);
-        transform.rotation *= rotationY;
+        Quaternion rotation = Quaternion.AngleAxis(_rotationSpeed, _rotationVector);
+        transform.rotation *= rotation;
     }
 }

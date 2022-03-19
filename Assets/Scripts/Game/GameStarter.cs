@@ -1,19 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
 {
-    private void Start()
-    {
-        Time.timeScale = 0;
-    }
+    [SerializeField] private List<Character> _characters;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Time.timeScale = 1;
+            foreach (var character in _characters)
+            {
+                character.Input.enabled = true;
+                character.Input.Begin();
+            }
+
             gameObject.SetActive(false);
         }
     }
