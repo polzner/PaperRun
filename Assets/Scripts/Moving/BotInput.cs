@@ -23,7 +23,7 @@ public class BotInput : CharacterInput
         while (true)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(2, 4));
-            _currentDirection = _direction * UnityEngine.Random.Range(0, 4);
+            _currentDirection = _direction * UnityEngine.Random.Range(0, 10);
         }
     }    
 }
